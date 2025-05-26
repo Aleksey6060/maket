@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Визитная карточка</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #1C2526; /* Темно-синий фон */
+    }
+    .card-container {
+      width: 400px;
+      height: 450px;
+      perspective: 1000px;
+      position: relative;
+    }
+    .card {
+      width: 100%;
+      height: 100%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s, left 0.3s ease, top 0.3s ease;
+    }
+    .card.flipped {
+      transform: rotateY(180deg);
+    }
+    .front, .back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 10px;
+      padding: 15px;
+      box-sizing: border-box;
+    }
+    .front {
+      background: linear-gradient(135deg, #4682A9 0%, #91C8E4 100%);
+      color: #FFFFFF;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+    .front .logo {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 28px;
+      color: #FFFFFF;
+      animation: pulse 2s infinite;
+    }
+    .front h1 {
+      font-size: 24px;
+      margin: 10px 0;
+      text-shadow: 1px 1px 1px #000;
+    }
+    .front p {
+      font-size: 16px;
+      margin: 5px 0;
+    }
+    .back {
+      background: #F6F7F8;
+      color: #2B5B84;
+      text-align: left;
+      transform: rotateY(180deg);
+      animation: slideIn 1s forwards;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      background: #2B5B84;
+      color: #FFFFFF;
+      padding: 10px;
+      border-radius: 10px 10px 0 0;
+      transition: background 0.5s;
+    }
+    .header p {
+      font-size: 12px;
+      margin: 3px 0;
+    }
+    .content {
+      padding: 10px;
+      flex: 1;
+    }
+    .content p {
+      font-size: 12px;
+      margin: 4px 0;
+    }
+    .content .skills {
+      margin-top: 8px;
+      transition: opacity 0.3s;
+    }
+    .content .description {
+      font-size: 11px;
+      margin-top: 8px;
+      line-height: 1.4;
+    }
+    .content .custom-text {
+      font-size: 18px;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #2B5B84;
+      margin-top: 8px;
+      opacity: 0;
+      animation: growEffect 1s forwards;
+      animation-delay: 0.6s;
+    }
+    .content .slogan {
+      font-style: italic;
+      font-size: 12px;
+      margin-top: 8px;
+    }
+    .back .qr-code {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      width: 50px;
+      height: 50px;
+      background: #2B5B84;
+      transition: transform 0.3s;
+    }
+    .back .qr-code:hover {
+      transform: scale(1.2);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    @keyframes growEffect {
+      from { opacity: 0; transform: scale(0.5); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="card-container">
+    <div class="card">
+      <div class="front">
+        <div class="logo"></></div>
+        <h1>Пак Алексей Вячеславович</h1>
+        <p>Программист / Веб-разработчик</p>
+        <p>Разработка веб-сайтов и информационных систем</p>
+      </div>
+      <div class="back">
+        <div class="header">
+          <p>Телефон: +7 (912) 345-67-89</p>
+          <p>Email: isip_a.v.pak@mpt.ru</p>
+          <p>Соцсети: @DeveloperBlue</p>
+        </div>
+        <div class="content">
+          <p>Адрес: г. Москва, ул. Лазурная, д. 12</p>
+          <div class="skills">
+            <p><strong>Навыки:</strong></p>
+            <p>- Верстка и дизайн сайтов (HTML, CSS)</p>
+            <p>- Работа с CMS (верстка шаблонов)</p>
+            <p>- Microsoft Office (Access, Excel, PowerPoint, Project, Visio, Word)</p>
+            <p>- Проектирование баз данных (SQL)</p>
+            <p>- Prompt engineering и работа с ИИ (ChatGPT, GPT-4) для автоматизации задач, анализа данных, UX-оптимизации</p>
+          </div>
+          <div class="description">
+            <p>Студент РЭУ им. Плеханова, специальность «Информационные системы и программирование». Стремлюсь применять аналитический склад ума и навыки коммуникации для создания эффективных цифровых решений. Моя цель — развивать профессиональный опыт, внедряя инновационные технологии для вашего бизнеса.</p>
+          </div>
+          <p class="custom-text">ВОТ ТАКАЯ ВОТ ВИЗИТКА</p>
+          <p class="slogan">Создаю цифровые решения для вашего успеха</p>
+          <div class="qr-code"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Переворот карточки при клике
+    const cardContainer = document.querySelector('.card-container');
+    const card = document.querySelector('.card');
+    cardContainer.addEventListener('click', () => {
+      card.classList.toggle('flipped');
+    });
+
+    // Параллакс-эффект и эффект плавания по X и Y с увеличенной амплитудой
+    cardContainer.addEventListener('mousemove', (e) => {
+      const rect = cardContainer.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      const rotateX = y / 50;
+      const rotateY = -x / 50;
+      const translateX = x / 10; // Увеличенная амплитуда (±40px)
+      const translateY = y / 10; // Увеличенная амплитуда (±40px)
+      card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateX(${translateX}px) translateY(${translateY}px) ${card.classList.contains('flipped') ? 'rotateY(180deg)' : ''}`;
+    });
+    cardContainer.addEventListener('mouseleave', () => {
+      card.style.transform = `rotateX(0deg) rotateY(0deg) translateX(0px) translateY(0px) ${card.classList.contains('flipped') ? 'rotateY(180deg)' : ''}`;
+    });
+
+    // Изменение цвета шапки при наведении
+    const header = document.querySelector('.header');
+    header.addEventListener('mouseenter', () => {
+      header.style.background = '#3E7CB1';
+    });
+    header.addEventListener('mouseleave', () => {
+      header.style.background = '#2B5B84';
+    });
+
+    // Интерактивность навыков при клике
+    const skills = document.querySelector('.skills');
+    skills.addEventListener('click', () => {
+      skills.style.opacity = skills.style.opacity === '0.5' ? '1' : '0.5';
+    });
+  </script>
+</body>
+</html>
